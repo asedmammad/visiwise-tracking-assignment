@@ -18,15 +18,13 @@ Your work should be done entirely *within* this provided project structure.
 
 ## 🔧 The Task
 
-Your goal is to write a Django management command that scrapes *all* quotes and author details from the authenticated section of the "Quotes to Scrape" site.
+Your goal is to write a Django code that scrapes *all* quotes and author details from the authenticated section of the "Quotes to Scrape" site.
 
 The target is: `https://quotes.toscrape.com/login`
 
 ### 1. Define Your Models
 
 In `scraper/models.py`, define the Django models to store the data you will scrape.
-- You must have models for *Quotes*, *Authors*, and *Tags*.
-- The models must be *normalized* to handle the relationships and avoid data duplication.
 
 ### 2. Handle Login
 
@@ -48,19 +46,13 @@ For each quote on the page, you must scrape:
 - Scrape the author's *birthdate* and *birth location*.
 - Add this data to your Author objects in the database.
 
-### 4. Create a Management Command
-
-All of your scraping logic must be encapsulated within a Django management command.
-- Create your command in `scraper/management/commands/scrape_quotes.py`.
-- The command should be executable by running `python manage.py scrape_quotes`.
-
 ---
 
 ## ⭐ Requirements
 
 1. *Language & Framework:* All code must be written in *Python* and operate within the provided *Django project*.
 2. *Data Storage:* You *must* use the Django ORM to save data.
-3. *Idempotency:* The command must be *idempotent*. If the command is run a second time, it must *not* create duplicate entries for quotes, authors, or tags.
+3. *Idempotency:* The scrape code must be *idempotent*. If the code is run a second time, it must *not* create duplicate entries for quotes, authors, or tags.
 4. *Error Handling:* Author detail pages may occasionally be missing data (e.g., no birth location). Your script must handle these cases *gracefully* (e.g., saving `None`/`NULL`) and continue scraping without crashing.
 5. *Libraries:* You are free to use libraries like `requests` and `BeautifulSoup4`. You *must* list any external libraries you use in a `requirements.txt` file.
 6. *Documentation:* You must provide a brief explanation (either as comments in your script or as a separate `README.md` file or at least prepare for a verbal description) documenting:
@@ -73,10 +65,8 @@ All of your scraping logic must be encapsulated within a Django management comma
 
 ## 🏆 Bonus Tasks (If you finish early)
 
-These are *not* required but will strongly demonstrate senior-level skills.
-
-1. *Concurrency:* Modify your management command to fetch the *parts of the data* concurrently to improve speed.
-2. *Browser Automation:* Create a *separate* script (e.g., `scrape_js.py`, does not need to be a Django command) that uses *Selenium* or *Playwright* to scrape the quotes from `https://quotes.toscrape.com/js-delayed/`. Print the first quote's text and author to the console.
+1. *Concurrency:* Modify your management code to fetch the *parts of the data* concurrently to improve speed.
+2. *Browser Automation:* Create a *separate* script (e.g., `scrape_js.py`) that uses *Selenium* or *Playwright* to scrape the quotes from `https://quotes.toscrape.com/js-delayed/`. Print the first quote's text and author to the console.
 
 ---
 
@@ -84,9 +74,9 @@ These are *not* required but will strongly demonstrate senior-level skills.
 
 We will be evaluating your submission based on the following criteria:
 
-- *Correctness:* Does the command run without errors? Does the `db.sqlite3` file contain complete and accurate data from *all* pages and *all* author detail pages?
+- *Correctness:* Does the code run without errors? Does the `db.sqlite3` file contain complete and accurate data from *all* pages and *all* author detail pages?
 - *Database Design:* Are your Django models in `models.py` normalized, efficient, and do they correctly represent the relationships?
-- *Idempotency & Efficiency:* Does the command handle being run multiple times without creating duplicates? Does the candidate demonstrate an understanding of performance bottlenecks?
+- *Idempotency & Efficiency:* Does the code handle being run multiple times without creating duplicates? Does the candidate demonstrate an understanding of performance bottlenecks?
 - *Resilience & Fault Tolerance:* Does the code handle potential errors gracefully (e.g., missing data on an author page) and continue processing?
 - *Code Quality:* Is your code clean, well-commented, and easy to understand? Did you follow Python/Django conventions?
 - *Project Structure & Reusability:* Is your logic well-organized? Is the database logic cleanly separated from the parsing logic?
